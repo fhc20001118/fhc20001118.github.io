@@ -402,11 +402,11 @@
                 
                 
                 
-                <a href="/project/categories/%E7%AE%97%E6%B3%95/" title="算法: 8">
+                <a href="/project/categories/%E7%AE%97%E6%B3%95/" title="算法: 7">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             style="background-color: #F9EBEA;">算法
-                        <span class="tag-length">8</span>
+                        <span class="tag-length">7</span>
                     </span>
                 </a>
                 
@@ -525,21 +525,22 @@ int left &#x3D; 0, right &#x3D; 0;
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/project/2022/11/28/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
+                    <a href="/project/2022/11/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/project/medias/featureimages/4.jpg" class="responsive-img" alt="字符串数组刷题笔记">
+                            <img src="/project/medias/featureimages/7.jpg" class="responsive-img" alt="二叉树刷题笔记">
                             
-                            <span class="card-title">字符串数组刷题笔记</span>
+                            <span class="card-title">二叉树刷题笔记</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                一、字符串数组模板思路：把句子中所有字符串取出放入字符串数组，再对数组中的字符串进行操作后重新连接即可，具体细节根据具体问题具体分析；
-遍历句子取字符串的思路，就是遇到字符把它放入临时字符串，遇到空格或者标点，就把临时字符串输出并且清空。
+                                1、求二叉树的最小深度与求二叉树最大深度不一样，如果直接像求二叉树最大深度那样递归求二叉树的最小深度，答案会错，因为当二叉树的左子树为空时，就会认为最小深度应该为1，这是错的；
 
+因此递归应该添加条件：
+int leftDepth &#x3
                             
                         </div>
                         <div class="publish-info">
@@ -562,8 +563,8 @@ int left &#x3D; 0, right &#x3D; 0;
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/project/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/">
-                            <span class="chip bg-color">字符串数组</span>
+                        <a href="/project/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                            <span class="chip bg-color">二叉树</span>
                         </a>
                         
                     </div>
@@ -621,22 +622,22 @@ vector&lt;i
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/project/2022/11/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
+                    <a href="/project/2022/11/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/project/medias/featureimages/7.jpg" class="responsive-img" alt="二叉树刷题笔记">
+                            <img src="/project/medias/featureimages/0.jpg" class="responsive-img" alt="二分查找刷题笔记">
                             
-                            <span class="card-title">二叉树刷题笔记</span>
+                            <span class="card-title">二分查找刷题笔记</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1、求二叉树的最小深度与求二叉树最大深度不一样，如果直接像求二叉树最大深度那样递归求二叉树的最小深度，答案会错，因为当二叉树的左子树为空时，就会认为最小深度应该为1，这是错的；
-
-因此递归应该添加条件：
-int leftDepth &#x3
+                                1、二分查找模板模板一：
+int search(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int left &#x3D; 0;
+        int right &#x
                             
                         </div>
                         <div class="publish-info">
@@ -659,8 +660,8 @@ int leftDepth &#x3
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/project/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
-                            <span class="chip bg-color">二叉树</span>
+                        <a href="/project/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+                            <span class="chip bg-color">二分查找</span>
                         </a>
                         
                     </div>
@@ -710,55 +711,6 @@ for (int i &#x3D; 0; i &lt;
                         
                         <a href="/project/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
                             <span class="chip bg-color">双指针</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/project/2022/11/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/project/medias/featureimages/0.jpg" class="responsive-img" alt="二分查找刷题笔记">
-                            
-                            <span class="card-title">二分查找刷题笔记</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                1、二分查找模板模板一：
-int search(vector&lt;int&gt;&amp; nums, int target) &#123;
-        int left &#x3D; 0;
-        int right &#x
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/project/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/project/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-                            <span class="chip bg-color">二分查找</span>
                         </a>
                         
                     </div>
