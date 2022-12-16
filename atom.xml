@@ -119,6 +119,58 @@
   </entry>
   
   <entry>
+    <title>滑动窗口刷题笔记</title>
+    <link href="http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
+    <id>http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
+    <published>2022-11-27T16:00:00.000Z</published>
+    <updated>2022-12-16T03:31:13.208Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般用来解决<strong>连续的子数组或者字串</strong>的问题</p><p>滑动窗口模板：</p><p>注意是<strong>左闭右开</strong>的区间！！！</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int left &#x3D; 0, right &#x3D; 0;        while (right &lt; s.size()) &#123;            &#x2F;&#x2F;增大窗口            window.add(s[right]);            right++;            while (window needs shrink) &#123;                &#x2F;&#x2F;缩小窗口                window.remove(s[left]);                left++;            &#125;        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最小字串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void slidingWindow(string s, string t) &#123;    unordered_map&lt;char, int&gt;need, window;    for (char ch : t) need[ch]++;        int left &#x3D; 0, right &#x3D; 0;    int valid &#x3D; 0;&#x2F;&#x2F;表示窗口中满足need条件的有效字符个数，如果valid和need.size大小相同， 则说明窗口已满足条件    while (right &lt; s.size()) &#123;        &#x2F;&#x2F;ch是将移入窗口的字符        char ch &#x3D; s[right];        &#x2F;&#x2F;右移窗口        right++;        &#x2F;&#x2F;进行窗口内数据的一系列更新        &#x2F;*......*&#x2F;                &#x2F;&#x2F;debug输出的位置printf(&quot;window: [%d, &amp;d)\n&quot;, left, right);                &#x2F;&#x2F;满足条件开始收缩        while (window needs shrink) &#123;            &#x2F;&#x2F;d是将移出窗口的字符char d &#x3D; s[left];            &#x2F;&#x2F;左移窗口            left++;            &#x2F;&#x2F;进行窗口内的一系列数据的更新            &#x2F;*......*&#x2F;        &#125;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最大子串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int totalFruit(vector&lt;int&gt;&amp; fruits) &#123;        unordered_map&lt;int, int&gt;window;        int left &#x3D; 0, right &#x3D; 0;        int len &#x3D; INT_MIN;        int valid &#x3D; 0;        while (right &lt; fruits.size()) &#123;            int n &#x3D; fruits[right];            right++;            window[n]++;            if (window[n] &#x3D;&#x3D; 1) valid++;                        &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);            &#x2F;&#x2F;如果window中的数字满足条件并且长度更大，就更新            if (valid &lt;&#x3D; 2 &amp;&amp; right - left &gt; len) &#123;                len &#x3D; right - left;            &#125;            &#x2F;&#x2F;直到window扩大到不满足条件才开始缩小                while (valid &gt; 2) &#123;                    int m &#x3D; fruits[left];                    left++;                    window[m]--;                    if (!window[m]) valid--;                    &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);                &#125;        &#125;        return len;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;一般用来解决&lt;strong&gt;连续的子数组或者字串&lt;/strong&gt;的问题&lt;/p&gt;
+&lt;p&gt;滑动窗口模板：&lt;/p&gt;
+&lt;p&gt;注意是&lt;strong&gt;左闭右开&lt;/strong&gt;的区间！！！&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-c++&quot; data</summary>
+      
+    
+    
+    
+    <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="滑动窗口" scheme="http://fhc20001118.github.io/project/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>链表刷题笔记</title>
+    <link href="http://fhc20001118.github.io/project/2022/11/28/%E9%93%BE%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
+    <id>http://fhc20001118.github.io/project/2022/11/28/%E9%93%BE%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
+    <published>2022-11-27T16:00:00.000Z</published>
+    <updated>2022-12-16T03:31:51.530Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、当要删除头结点时，可以给链表增加一个虚拟的空头结点</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ListNode *dummyHead &#x3D; new Listnode(0);dummyHead-&gt;next &#x3D; head;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>2、用双指针找链表的相交结点时</p><p>这一段代码千万别写成pA-&gt;next == nullptr,因为这样会跳过当他们没有交点的时候，事实上不管两个链表是不是会相交，pA和pB都会相遇，但是当两个链表不相交时，他们同时为nullptr罢了，如果用 pA-&gt;next == nullptr来判断的话，会跳过他们同时等于 nullptr 的情况</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">while (pA !&#x3D; pB) &#123;            pA &#x3D; pA &#x3D;&#x3D; nullptr? headB : pA-&gt;next;            pB &#x3D; pB &#x3D;&#x3D; nullptr? headA : pB-&gt;next;        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1、当要删除头结点时，可以给链表增加一个虚拟的空头结点&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;ListNode *dummyHead</summary>
+      
+    
+    
+    
+    <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="链表" scheme="http://fhc20001118.github.io/project/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>双指针刷题笔记</title>
     <link href="http://fhc20001118.github.io/project/2022/11/28/%E5%8F%8C%E6%8C%87%E9%92%88%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
     <id>http://fhc20001118.github.io/project/2022/11/28/%E5%8F%8C%E6%8C%87%E9%92%88%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
@@ -162,58 +214,6 @@
     
     
     <category term="字符串数组" scheme="http://fhc20001118.github.io/project/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>链表刷题笔记</title>
-    <link href="http://fhc20001118.github.io/project/2022/11/28/%E9%93%BE%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
-    <id>http://fhc20001118.github.io/project/2022/11/28/%E9%93%BE%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
-    <published>2022-11-27T16:00:00.000Z</published>
-    <updated>2022-12-16T03:31:51.530Z</updated>
-    
-    <content type="html"><![CDATA[<p>1、当要删除头结点时，可以给链表增加一个虚拟的空头结点</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ListNode *dummyHead &#x3D; new Listnode(0);dummyHead-&gt;next &#x3D; head;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>2、用双指针找链表的相交结点时</p><p>这一段代码千万别写成pA-&gt;next == nullptr,因为这样会跳过当他们没有交点的时候，事实上不管两个链表是不是会相交，pA和pB都会相遇，但是当两个链表不相交时，他们同时为nullptr罢了，如果用 pA-&gt;next == nullptr来判断的话，会跳过他们同时等于 nullptr 的情况</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">while (pA !&#x3D; pB) &#123;            pA &#x3D; pA &#x3D;&#x3D; nullptr? headB : pA-&gt;next;            pB &#x3D; pB &#x3D;&#x3D; nullptr? headA : pB-&gt;next;        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;1、当要删除头结点时，可以给链表增加一个虚拟的空头结点&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;ListNode *dummyHead</summary>
-      
-    
-    
-    
-    <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="链表" scheme="http://fhc20001118.github.io/project/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>滑动窗口刷题笔记</title>
-    <link href="http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
-    <id>http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
-    <published>2022-11-27T16:00:00.000Z</published>
-    <updated>2022-12-16T03:31:13.208Z</updated>
-    
-    <content type="html"><![CDATA[<p>一般用来解决<strong>连续的子数组或者字串</strong>的问题</p><p>滑动窗口模板：</p><p>注意是<strong>左闭右开</strong>的区间！！！</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int left &#x3D; 0, right &#x3D; 0;        while (right &lt; s.size()) &#123;            &#x2F;&#x2F;增大窗口            window.add(s[right]);            right++;            while (window needs shrink) &#123;                &#x2F;&#x2F;缩小窗口                window.remove(s[left]);                left++;            &#125;        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最小字串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void slidingWindow(string s, string t) &#123;    unordered_map&lt;char, int&gt;need, window;    for (char ch : t) need[ch]++;        int left &#x3D; 0, right &#x3D; 0;    int valid &#x3D; 0;&#x2F;&#x2F;表示窗口中满足need条件的有效字符个数，如果valid和need.size大小相同， 则说明窗口已满足条件    while (right &lt; s.size()) &#123;        &#x2F;&#x2F;ch是将移入窗口的字符        char ch &#x3D; s[right];        &#x2F;&#x2F;右移窗口        right++;        &#x2F;&#x2F;进行窗口内数据的一系列更新        &#x2F;*......*&#x2F;                &#x2F;&#x2F;debug输出的位置printf(&quot;window: [%d, &amp;d)\n&quot;, left, right);                &#x2F;&#x2F;满足条件开始收缩        while (window needs shrink) &#123;            &#x2F;&#x2F;d是将移出窗口的字符char d &#x3D; s[left];            &#x2F;&#x2F;左移窗口            left++;            &#x2F;&#x2F;进行窗口内的一系列数据的更新            &#x2F;*......*&#x2F;        &#125;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最大子串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int totalFruit(vector&lt;int&gt;&amp; fruits) &#123;        unordered_map&lt;int, int&gt;window;        int left &#x3D; 0, right &#x3D; 0;        int len &#x3D; INT_MIN;        int valid &#x3D; 0;        while (right &lt; fruits.size()) &#123;            int n &#x3D; fruits[right];            right++;            window[n]++;            if (window[n] &#x3D;&#x3D; 1) valid++;                        &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);            &#x2F;&#x2F;如果window中的数字满足条件并且长度更大，就更新            if (valid &lt;&#x3D; 2 &amp;&amp; right - left &gt; len) &#123;                len &#x3D; right - left;            &#125;            &#x2F;&#x2F;直到window扩大到不满足条件才开始缩小                while (valid &gt; 2) &#123;                    int m &#x3D; fruits[left];                    left++;                    window[m]--;                    if (!window[m]) valid--;                    &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);                &#125;        &#125;        return len;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;一般用来解决&lt;strong&gt;连续的子数组或者字串&lt;/strong&gt;的问题&lt;/p&gt;
-&lt;p&gt;滑动窗口模板：&lt;/p&gt;
-&lt;p&gt;注意是&lt;strong&gt;左闭右开&lt;/strong&gt;的区间！！！&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-c++&quot; data</summary>
-      
-    
-    
-    
-    <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="滑动窗口" scheme="http://fhc20001118.github.io/project/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
     
   </entry>
   
