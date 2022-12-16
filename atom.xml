@@ -6,7 +6,7 @@
   <link href="http://fhc20001118.github.io/project/atom.xml" rel="self"/>
   
   <link href="http://fhc20001118.github.io/project/"/>
-  <updated>2022-12-16T03:30:19.656Z</updated>
+  <updated>2022-12-16T03:33:08.151Z</updated>
   <id>http://fhc20001118.github.io/project/</id>
   
   <author>
@@ -15,31 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>二分查找刷题笔记</title>
-    <link href="http://fhc20001118.github.io/project/2022/11/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
-    <id>http://fhc20001118.github.io/project/2022/11/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
-    <published>2022-11-27T16:00:00.000Z</published>
-    <updated>2022-12-16T03:30:19.656Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1、二分查找模板"><a href="#1、二分查找模板" class="headerlink" title="1、二分查找模板"></a>1、二分查找模板</h2><p>模板一：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int search(vector&lt;int&gt;&amp; nums, int target) &#123;        int left &#x3D; 0;        int right &#x3D; nums.size() - 1; &#x2F;&#x2F; 定义target在左闭右闭的区间里，[left, right]        while (left &lt;&#x3D; right) &#123; &#x2F;&#x2F; 当left&#x3D;&#x3D;right，区间[left, right]依然有效，所以用 &lt;&#x3D;            int middle &#x3D; left + ((right - left) &#x2F; 2);&#x2F;&#x2F; 防止溢出 等同于(left + right)&#x2F;2            if (nums[middle] &gt; target) &#123;                right &#x3D; middle - 1; &#x2F;&#x2F; target 在左区间，所以[left, middle - 1]            &#125; else if (nums[middle] &lt; target) &#123;                left &#x3D; middle + 1; &#x2F;&#x2F; target 在右区间，所以[middle + 1, right]            &#125; else &#123; &#x2F;&#x2F; nums[middle] &#x3D;&#x3D; target                return middle; &#x2F;&#x2F; 数组中找到目标值，直接返回下标            &#125;        &#125;        &#x2F;&#x2F; 未找到目标值        return -1;    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>模板二：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int search(vector&lt;int&gt;&amp; nums, int target) &#123;        int left &#x3D; 0;        int right &#x3D; nums.size(); &#x2F;&#x2F; 定义target在左闭右开的区间里，即：[left, right)        while (left &lt; right) &#123; &#x2F;&#x2F; 因为left &#x3D;&#x3D; right的时候，在[left, right)是无效的空间，所以使用 &lt;            int middle &#x3D; left + ((right - left) &gt;&gt; 1);            if (nums[middle] &gt; target) &#123;                right &#x3D; middle; &#x2F;&#x2F; target 在左区间，在[left, middle)中            &#125; else if (nums[middle] &lt; target) &#123;                left &#x3D; middle + 1; &#x2F;&#x2F; target 在右区间，在[middle + 1, right)中            &#125; else &#123; &#x2F;&#x2F; nums[middle] &#x3D;&#x3D; target                return middle; &#x2F;&#x2F; 数组中找到目标值，直接返回下标            &#125;        &#125;        &#x2F;&#x2F; 未找到目标值        return -1;    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h6 id="解释一下左移和右移：x-lt-lt-y-相当于x-2-y-，x-gt-gt-y-相当于x-2-y"><a href="#解释一下左移和右移：x-lt-lt-y-相当于x-2-y-，x-gt-gt-y-相当于x-2-y" class="headerlink" title="解释一下左移和右移：x &lt;&lt; y 相当于x * 2^y ，x &gt;&gt; y 相当于x  /  2^y"></a>解释一下左移和右移：x &lt;&lt; y 相当于x * 2^y ，x &gt;&gt; y 相当于x  /  2^y</h6>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;1、二分查找模板&quot;&gt;&lt;a href=&quot;#1、二分查找模板&quot; class=&quot;headerlink&quot; title=&quot;1、二分查找模板&quot;&gt;&lt;/a&gt;1、二分查找模板&lt;/h2&gt;&lt;p&gt;模板一：&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-c++</summary>
-      
-    
-    
-    
-    <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="二分查找" scheme="http://fhc20001118.github.io/project/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
-    
-  </entry>
   
   <entry>
     <title>回溯算法刷题笔记</title>
@@ -67,6 +42,31 @@
     
     
     <category term="回溯" scheme="http://fhc20001118.github.io/project/tags/%E5%9B%9E%E6%BA%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二分查找刷题笔记</title>
+    <link href="http://fhc20001118.github.io/project/2022/11/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
+    <id>http://fhc20001118.github.io/project/2022/11/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
+    <published>2022-11-27T16:00:00.000Z</published>
+    <updated>2022-12-16T03:30:19.656Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1、二分查找模板"><a href="#1、二分查找模板" class="headerlink" title="1、二分查找模板"></a>1、二分查找模板</h2><p>模板一：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int search(vector&lt;int&gt;&amp; nums, int target) &#123;        int left &#x3D; 0;        int right &#x3D; nums.size() - 1; &#x2F;&#x2F; 定义target在左闭右闭的区间里，[left, right]        while (left &lt;&#x3D; right) &#123; &#x2F;&#x2F; 当left&#x3D;&#x3D;right，区间[left, right]依然有效，所以用 &lt;&#x3D;            int middle &#x3D; left + ((right - left) &#x2F; 2);&#x2F;&#x2F; 防止溢出 等同于(left + right)&#x2F;2            if (nums[middle] &gt; target) &#123;                right &#x3D; middle - 1; &#x2F;&#x2F; target 在左区间，所以[left, middle - 1]            &#125; else if (nums[middle] &lt; target) &#123;                left &#x3D; middle + 1; &#x2F;&#x2F; target 在右区间，所以[middle + 1, right]            &#125; else &#123; &#x2F;&#x2F; nums[middle] &#x3D;&#x3D; target                return middle; &#x2F;&#x2F; 数组中找到目标值，直接返回下标            &#125;        &#125;        &#x2F;&#x2F; 未找到目标值        return -1;    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>模板二：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int search(vector&lt;int&gt;&amp; nums, int target) &#123;        int left &#x3D; 0;        int right &#x3D; nums.size(); &#x2F;&#x2F; 定义target在左闭右开的区间里，即：[left, right)        while (left &lt; right) &#123; &#x2F;&#x2F; 因为left &#x3D;&#x3D; right的时候，在[left, right)是无效的空间，所以使用 &lt;            int middle &#x3D; left + ((right - left) &gt;&gt; 1);            if (nums[middle] &gt; target) &#123;                right &#x3D; middle; &#x2F;&#x2F; target 在左区间，在[left, middle)中            &#125; else if (nums[middle] &lt; target) &#123;                left &#x3D; middle + 1; &#x2F;&#x2F; target 在右区间，在[middle + 1, right)中            &#125; else &#123; &#x2F;&#x2F; nums[middle] &#x3D;&#x3D; target                return middle; &#x2F;&#x2F; 数组中找到目标值，直接返回下标            &#125;        &#125;        &#x2F;&#x2F; 未找到目标值        return -1;    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h6 id="解释一下左移和右移：x-lt-lt-y-相当于x-2-y-，x-gt-gt-y-相当于x-2-y"><a href="#解释一下左移和右移：x-lt-lt-y-相当于x-2-y-，x-gt-gt-y-相当于x-2-y" class="headerlink" title="解释一下左移和右移：x &lt;&lt; y 相当于x * 2^y ，x &gt;&gt; y 相当于x  /  2^y"></a>解释一下左移和右移：x &lt;&lt; y 相当于x * 2^y ，x &gt;&gt; y 相当于x  /  2^y</h6>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1、二分查找模板&quot;&gt;&lt;a href=&quot;#1、二分查找模板&quot; class=&quot;headerlink&quot; title=&quot;1、二分查找模板&quot;&gt;&lt;/a&gt;1、二分查找模板&lt;/h2&gt;&lt;p&gt;模板一：&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-c++</summary>
+      
+    
+    
+    
+    <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="二分查找" scheme="http://fhc20001118.github.io/project/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
     
   </entry>
   
@@ -120,18 +120,21 @@
   </entry>
   
   <entry>
-    <title>哈希表刷题笔记</title>
-    <link href="http://fhc20001118.github.io/project/2022/11/28/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
-    <id>http://fhc20001118.github.io/project/2022/11/28/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
+    <title>滑动窗口刷题笔记</title>
+    <link href="http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
+    <id>http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
     <published>2022-11-27T16:00:00.000Z</published>
-    <updated>2022-12-16T03:29:25.982Z</updated>
+    <updated>2022-12-16T03:31:13.208Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="1、字符串中的字符出现次数（都是小写的情况下）"><a href="#1、字符串中的字符出现次数（都是小写的情况下）" class="headerlink" title="1、字符串中的字符出现次数（都是小写的情况下）"></a>1、字符串中的字符出现次数（都是小写的情况下）</h2><p>因为字母一共26个，所以可以定义一个长度为26的数组来记录每个字符出现的次数;</p><p>字母a的下标为 ‘a’ - ‘a’ = 0；字母z的下标为 ‘z’ - ‘a’ = 25；</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;int&gt;record(26);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="2、两数之和如何使用哈希表"><a href="#2、两数之和如何使用哈希表" class="headerlink" title="2、两数之和如何使用哈希表"></a>2、两数之和如何使用哈希表</h2><p>如果在初始化哈希表的时候是直接把nums中的每个元素以及它对应的下标放入哈希表中，当遇到相同的元素时候就不会重复放入，这样就会导致答案出错，因为可能两个相同的数刚好能构成这个target，因此在初始化的时候要判断是否在哈希表中能找到一个数加上当前遍历到的这个数的和等于target，如果可以的话就返回，不可以的话再把这个数和它的下标存入哈希表中</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for (int i &#x3D; 0; i &lt; nums.size(); i++) &#123;           if (index.find(target - nums[i]) &#x3D;&#x3D; index.end()) &#123;               index[nums[i]] &#x3D; i;           &#125;           else &#123;               res[0] &#x3D; i;               res[1] &#x3D; index[target - nums[i]];               return res;           &#125;       &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="3、四数相加II"><a href="#3、四数相加II" class="headerlink" title="3、四数相加II"></a>3、四数相加II</h2><p><img src="https://raw.githubusercontent.com/fhc20001118/images/master/img/image-20221101192105059.png" alt="image-20221101192105059"></p><p>这道题比三数之和和四数之和简单，因为它不考虑重复；</p><p>解决办法：</p><p>双循环遍历nums1和nums2并计算他们两两的和作为哈希表的key值，value是他们出现的次数；</p><p>然后双循环遍历nums3和nums4并计算0减他们两两的和，在哈希表中查找是否存在，若存在则count统计他们的value（出现的次数就是能够构成元组的次数）</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">unordered_map&lt;int, int&gt;mp;        int count &#x3D; 0;        for (int num1 : nums1) &#123;            for (int num2 : nums2) &#123;                mp[num1+num2]++;            &#125;        &#125;        for (int num3 : nums3) &#123;            for (int num4 : nums4) &#123;                if (mp.find(0-(num3+num4)) !&#x3D; mp.end()) &#123;                    count +&#x3D; mp[0-(num3+num4)];                &#125;            &#125;        &#125;        return count;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    <content type="html"><![CDATA[<p>一般用来解决<strong>连续的子数组或者字串</strong>的问题</p><p>滑动窗口模板：</p><p>注意是<strong>左闭右开</strong>的区间！！！</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int left &#x3D; 0, right &#x3D; 0;        while (right &lt; s.size()) &#123;            &#x2F;&#x2F;增大窗口            window.add(s[right]);            right++;            while (window needs shrink) &#123;                &#x2F;&#x2F;缩小窗口                window.remove(s[left]);                left++;            &#125;        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最小字串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void slidingWindow(string s, string t) &#123;    unordered_map&lt;char, int&gt;need, window;    for (char ch : t) need[ch]++;        int left &#x3D; 0, right &#x3D; 0;    int valid &#x3D; 0;&#x2F;&#x2F;表示窗口中满足need条件的有效字符个数，如果valid和need.size大小相同， 则说明窗口已满足条件    while (right &lt; s.size()) &#123;        &#x2F;&#x2F;ch是将移入窗口的字符        char ch &#x3D; s[right];        &#x2F;&#x2F;右移窗口        right++;        &#x2F;&#x2F;进行窗口内数据的一系列更新        &#x2F;*......*&#x2F;                &#x2F;&#x2F;debug输出的位置printf(&quot;window: [%d, &amp;d)\n&quot;, left, right);                &#x2F;&#x2F;满足条件开始收缩        while (window needs shrink) &#123;            &#x2F;&#x2F;d是将移出窗口的字符char d &#x3D; s[left];            &#x2F;&#x2F;左移窗口            left++;            &#x2F;&#x2F;进行窗口内的一系列数据的更新            &#x2F;*......*&#x2F;        &#125;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最大子串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int totalFruit(vector&lt;int&gt;&amp; fruits) &#123;        unordered_map&lt;int, int&gt;window;        int left &#x3D; 0, right &#x3D; 0;        int len &#x3D; INT_MIN;        int valid &#x3D; 0;        while (right &lt; fruits.size()) &#123;            int n &#x3D; fruits[right];            right++;            window[n]++;            if (window[n] &#x3D;&#x3D; 1) valid++;                        &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);            &#x2F;&#x2F;如果window中的数字满足条件并且长度更大，就更新            if (valid &lt;&#x3D; 2 &amp;&amp; right - left &gt; len) &#123;                len &#x3D; right - left;            &#125;            &#x2F;&#x2F;直到window扩大到不满足条件才开始缩小                while (valid &gt; 2) &#123;                    int m &#x3D; fruits[left];                    left++;                    window[m]--;                    if (!window[m]) valid--;                    &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);                &#125;        &#125;        return len;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;1、字符串中的字符出现次数（都是小写的情况下）&quot;&gt;&lt;a href=&quot;#1、字符串中的字符出现次数（都是小写的情况下）&quot; class=&quot;headerlink&quot; title=&quot;1、字符串中的字符出现次数（都是小写的情况下）&quot;&gt;&lt;/a&gt;1、字符串中的字符出现次数（都是小</summary>
+    <summary type="html">&lt;p&gt;一般用来解决&lt;strong&gt;连续的子数组或者字串&lt;/strong&gt;的问题&lt;/p&gt;
+&lt;p&gt;滑动窗口模板：&lt;/p&gt;
+&lt;p&gt;注意是&lt;strong&gt;左闭右开&lt;/strong&gt;的区间！！！&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-c++&quot; data</summary>
       
     
     
@@ -139,7 +142,7 @@
     <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="哈希表" scheme="http://fhc20001118.github.io/project/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    <category term="滑动窗口" scheme="http://fhc20001118.github.io/project/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
     
   </entry>
   
@@ -193,21 +196,18 @@
   </entry>
   
   <entry>
-    <title>滑动窗口刷题笔记</title>
-    <link href="http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
-    <id>http://fhc20001118.github.io/project/2022/11/28/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
+    <title>哈希表刷题笔记</title>
+    <link href="http://fhc20001118.github.io/project/2022/11/28/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
+    <id>http://fhc20001118.github.io/project/2022/11/28/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</id>
     <published>2022-11-27T16:00:00.000Z</published>
-    <updated>2022-12-16T03:31:13.208Z</updated>
+    <updated>2022-12-16T03:29:25.982Z</updated>
     
-    <content type="html"><![CDATA[<p>一般用来解决<strong>连续的子数组或者字串</strong>的问题</p><p>滑动窗口模板：</p><p>注意是<strong>左闭右开</strong>的区间！！！</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int left &#x3D; 0, right &#x3D; 0;        while (right &lt; s.size()) &#123;            &#x2F;&#x2F;增大窗口            window.add(s[right]);            right++;            while (window needs shrink) &#123;                &#x2F;&#x2F;缩小窗口                window.remove(s[left]);                left++;            &#125;        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最小字串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void slidingWindow(string s, string t) &#123;    unordered_map&lt;char, int&gt;need, window;    for (char ch : t) need[ch]++;        int left &#x3D; 0, right &#x3D; 0;    int valid &#x3D; 0;&#x2F;&#x2F;表示窗口中满足need条件的有效字符个数，如果valid和need.size大小相同， 则说明窗口已满足条件    while (right &lt; s.size()) &#123;        &#x2F;&#x2F;ch是将移入窗口的字符        char ch &#x3D; s[right];        &#x2F;&#x2F;右移窗口        right++;        &#x2F;&#x2F;进行窗口内数据的一系列更新        &#x2F;*......*&#x2F;                &#x2F;&#x2F;debug输出的位置printf(&quot;window: [%d, &amp;d)\n&quot;, left, right);                &#x2F;&#x2F;满足条件开始收缩        while (window needs shrink) &#123;            &#x2F;&#x2F;d是将移出窗口的字符char d &#x3D; s[left];            &#x2F;&#x2F;左移窗口            left++;            &#x2F;&#x2F;进行窗口内的一系列数据的更新            &#x2F;*......*&#x2F;        &#125;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>滑动窗口框架（找最大子串）：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int totalFruit(vector&lt;int&gt;&amp; fruits) &#123;        unordered_map&lt;int, int&gt;window;        int left &#x3D; 0, right &#x3D; 0;        int len &#x3D; INT_MIN;        int valid &#x3D; 0;        while (right &lt; fruits.size()) &#123;            int n &#x3D; fruits[right];            right++;            window[n]++;            if (window[n] &#x3D;&#x3D; 1) valid++;                        &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);            &#x2F;&#x2F;如果window中的数字满足条件并且长度更大，就更新            if (valid &lt;&#x3D; 2 &amp;&amp; right - left &gt; len) &#123;                len &#x3D; right - left;            &#125;            &#x2F;&#x2F;直到window扩大到不满足条件才开始缩小                while (valid &gt; 2) &#123;                    int m &#x3D; fruits[left];                    left++;                    window[m]--;                    if (!window[m]) valid--;                    &#x2F;&#x2F;printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);                &#125;        &#125;        return len;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    <content type="html"><![CDATA[<h2 id="1、字符串中的字符出现次数（都是小写的情况下）"><a href="#1、字符串中的字符出现次数（都是小写的情况下）" class="headerlink" title="1、字符串中的字符出现次数（都是小写的情况下）"></a>1、字符串中的字符出现次数（都是小写的情况下）</h2><p>因为字母一共26个，所以可以定义一个长度为26的数组来记录每个字符出现的次数;</p><p>字母a的下标为 ‘a’ - ‘a’ = 0；字母z的下标为 ‘z’ - ‘a’ = 25；</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;int&gt;record(26);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="2、两数之和如何使用哈希表"><a href="#2、两数之和如何使用哈希表" class="headerlink" title="2、两数之和如何使用哈希表"></a>2、两数之和如何使用哈希表</h2><p>如果在初始化哈希表的时候是直接把nums中的每个元素以及它对应的下标放入哈希表中，当遇到相同的元素时候就不会重复放入，这样就会导致答案出错，因为可能两个相同的数刚好能构成这个target，因此在初始化的时候要判断是否在哈希表中能找到一个数加上当前遍历到的这个数的和等于target，如果可以的话就返回，不可以的话再把这个数和它的下标存入哈希表中</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for (int i &#x3D; 0; i &lt; nums.size(); i++) &#123;           if (index.find(target - nums[i]) &#x3D;&#x3D; index.end()) &#123;               index[nums[i]] &#x3D; i;           &#125;           else &#123;               res[0] &#x3D; i;               res[1] &#x3D; index[target - nums[i]];               return res;           &#125;       &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="3、四数相加II"><a href="#3、四数相加II" class="headerlink" title="3、四数相加II"></a>3、四数相加II</h2><p><img src="https://raw.githubusercontent.com/fhc20001118/images/master/img/image-20221101192105059.png" alt="image-20221101192105059"></p><p>这道题比三数之和和四数之和简单，因为它不考虑重复；</p><p>解决办法：</p><p>双循环遍历nums1和nums2并计算他们两两的和作为哈希表的key值，value是他们出现的次数；</p><p>然后双循环遍历nums3和nums4并计算0减他们两两的和，在哈希表中查找是否存在，若存在则count统计他们的value（出现的次数就是能够构成元组的次数）</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">unordered_map&lt;int, int&gt;mp;        int count &#x3D; 0;        for (int num1 : nums1) &#123;            for (int num2 : nums2) &#123;                mp[num1+num2]++;            &#125;        &#125;        for (int num3 : nums3) &#123;            for (int num4 : nums4) &#123;                if (mp.find(0-(num3+num4)) !&#x3D; mp.end()) &#123;                    count +&#x3D; mp[0-(num3+num4)];                &#125;            &#125;        &#125;        return count;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;一般用来解决&lt;strong&gt;连续的子数组或者字串&lt;/strong&gt;的问题&lt;/p&gt;
-&lt;p&gt;滑动窗口模板：&lt;/p&gt;
-&lt;p&gt;注意是&lt;strong&gt;左闭右开&lt;/strong&gt;的区间！！！&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-c++&quot; data</summary>
+    <summary type="html">&lt;h2 id=&quot;1、字符串中的字符出现次数（都是小写的情况下）&quot;&gt;&lt;a href=&quot;#1、字符串中的字符出现次数（都是小写的情况下）&quot; class=&quot;headerlink&quot; title=&quot;1、字符串中的字符出现次数（都是小写的情况下）&quot;&gt;&lt;/a&gt;1、字符串中的字符出现次数（都是小</summary>
       
     
     
@@ -215,7 +215,7 @@
     <category term="算法" scheme="http://fhc20001118.github.io/project/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="滑动窗口" scheme="http://fhc20001118.github.io/project/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
+    <category term="哈希表" scheme="http://fhc20001118.github.io/project/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
