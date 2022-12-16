@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+ <html lang="en"> 
+<head>
+  <meta charset="utf-8">
+  
+  <title>滑动窗口刷题笔记 | Hexo</title>
+  <meta name="author" content="John Doe">
+
+  
+  <meta name="description" content="一般用来解决连续的子数组或者字串的问题
+滑动窗口模板：
+注意是左闭右开的区间！！！
+123456789101112int left = 0, right = 0;        while (right &amp;lt; s.size()) &amp;#123;            //增大窗口         ">
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="p-name title" itemprop="headline name">滑动窗口刷题笔记</h1>
+  
+
+    <time class="dt-published" datetime="2022-11-27T16:00:00.000Z">
+  <span class="day">28</span><span class="month">Nov</span>
+</time>
+  </header>
+  <div class="e-content entry-content">
+    
+      <p>一般用来解决<strong>连续的子数组或者字串</strong>的问题</p>
+<p>滑动窗口模板：</p>
+<p>注意是<strong>左闭右开</strong>的区间！！！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="comment">//增大窗口</span></span><br><span class="line">            window.<span class="built_in">add</span>(s[right]);</span><br><span class="line">            right++;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (window needs shrink) &#123;</span><br><span class="line">                <span class="comment">//缩小窗口</span></span><br><span class="line">                window.<span class="built_in">remove</span>(s[left]);</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>滑动窗口框架（找最小字串）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">slidingWindow</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">    unordered_map&lt;<span class="type">char</span>, <span class="type">int</span>&gt;need, window;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> ch : t) need[ch]++;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> valid = <span class="number">0</span>;<span class="comment">//表示窗口中满足need条件的有效字符个数，如果valid和need.size大小相同，	 则说明窗口已满足条件</span></span><br><span class="line">    <span class="keyword">while</span> (right &lt; s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="comment">//ch是将移入窗口的字符</span></span><br><span class="line">        <span class="type">char</span> ch = s[right];</span><br><span class="line">        <span class="comment">//右移窗口</span></span><br><span class="line">        right++;</span><br><span class="line">        <span class="comment">//进行窗口内数据的一系列更新</span></span><br><span class="line">        <span class="comment">/*......*/</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//debug输出的位置</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;window: [%d, &amp;d)\n&quot;</span>, left, right);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//满足条件开始收缩</span></span><br><span class="line">        <span class="keyword">while</span> (window needs shrink) &#123;</span><br><span class="line">            <span class="comment">//d是将移出窗口的字符</span></span><br><span class="line">			<span class="type">char</span> d = s[left];</span><br><span class="line">            <span class="comment">//左移窗口</span></span><br><span class="line">            left++;</span><br><span class="line">            <span class="comment">//进行窗口内的一系列数据的更新</span></span><br><span class="line">            <span class="comment">/*......*/</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>滑动窗口框架（找最大子串）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">totalFruit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; fruits)</span> </span>&#123;	    </span><br><span class="line">	    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;window;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> len = INT_MIN;</span><br><span class="line">        <span class="type">int</span> valid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; fruits.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> n = fruits[right];</span><br><span class="line">            right++;</span><br><span class="line">            window[n]++;</span><br><span class="line">            <span class="keyword">if</span> (window[n] == <span class="number">1</span>) valid++;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);</span></span><br><span class="line">            <span class="comment">//如果window中的数字满足条件并且长度更大，就更新</span></span><br><span class="line">            <span class="keyword">if</span> (valid &lt;= <span class="number">2</span> &amp;&amp; right - left &gt; len) &#123;</span><br><span class="line">                len = right - left;</span><br><span class="line">            &#125;</span><br><span class="line">            	<span class="comment">//直到window扩大到不满足条件才开始缩小</span></span><br><span class="line">                <span class="keyword">while</span> (valid &gt; <span class="number">2</span>) &#123;</span><br><span class="line">                    <span class="type">int</span> m = fruits[left];</span><br><span class="line">                    left++;</span><br><span class="line"></span><br><span class="line">                    window[m]--;</span><br><span class="line">                    <span class="keyword">if</span> (!window[m]) valid--;</span><br><span class="line">                    <span class="comment">//printf(&quot;window[%d, %d)     valid:%d\n&quot;, left, right, valid);</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/%E7%AE%97%E6%B3%95/">算法</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2022 John Doe
+  
+</p>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+
+<script src="/js/phasebeam.js"></script>
+
+</body>
+</html>

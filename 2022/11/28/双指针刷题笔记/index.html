@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+ <html lang="en"> 
+<head>
+  <meta charset="utf-8">
+  
+  <title>双指针刷题笔记 | Hexo</title>
+  <meta name="author" content="John Doe">
+
+  
+  <meta name="description" content="1、三数之和注意：使用双指针一定要记得排序！！！
+​    1）如何遍历？
+​    先排序，a = nums[i], b = nums[left], c = nums[right]
+1234567891011121314151617181920212223242526272829303132333">
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="p-name title" itemprop="headline name">双指针刷题笔记</h1>
+  
+
+    <time class="dt-published" datetime="2022-11-27T16:00:00.000Z">
+  <span class="day">28</span><span class="month">Nov</span>
+</time>
+  </header>
+  <div class="e-content entry-content">
+    
+      <h2 id="1、三数之和"><a href="#1、三数之和" class="headerlink" title="1、三数之和"></a>1、三数之和</h2><p><strong>注意：使用双指针一定要记得排序！！！</strong></p>
+<p>​    1）如何遍历？</p>
+<p>​    先排序，a = nums[i], b = nums[left], c = nums[right]</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="comment">// 排序之后如果第一个元素已经大于零，那么无论如何组合都不可能凑成三元组，直接返回结果就可以了</span></span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 错误去重a方法，将会漏掉-1,-1,2 这种情况</span></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            if (nums[i] == nums[i + 1]) &#123;</span></span><br><span class="line"><span class="comment">                continue;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="comment">// 正确去重a方法</span></span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> left = i + <span class="number">1</span>;</span><br><span class="line">            <span class="type">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (right &gt; left) &#123;</span><br><span class="line">                <span class="comment">// 去重复逻辑如果放在这里，0，0，0 的情况，可能直接导致 right&lt;=left 了，从而漏掉了 				   0,0,0 这种三元组</span></span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                while (right &gt; left &amp;&amp; nums[right] == nums[right - 1]) right--;</span></span><br><span class="line"><span class="comment">                while (right &gt; left &amp;&amp; nums[left] == nums[left + 1]) left++;</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[left] + nums[right] &gt; <span class="number">0</span>) right--;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] + nums[left] + nums[right] &lt; <span class="number">0</span>) left++;</span><br><span class="line">                <span class="keyword">else</span> &#123;result.<span class="built_in">push_back</span>(vector&lt;<span class="type">int</span>&gt;&#123;nums[i], nums[left], nums[right]&#125;);</span><br><span class="line">                    <span class="comment">// 去重逻辑应该放在找到一个三元组之后，对b 和 c去重</span></span><br><span class="line">                    <span class="keyword">while</span> (right &gt; left &amp;&amp; nums[right] == nums[right - <span class="number">1</span>]) right--;</span><br><span class="line">                    <span class="keyword">while</span> (right &gt; left &amp;&amp; nums[left] == nums[left + <span class="number">1</span>]) left++;</span><br><span class="line">                    <span class="comment">// 找到答案时，双指针同时收缩</span></span><br><span class="line">                    right--;</span><br><span class="line">                    left++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    2）如何去重？</p>
+<p>​    参考上面一段代码</p>
+<h2 id="2、四数之和"><a href="#2、四数之和" class="headerlink" title="2、四数之和"></a>2、四数之和</h2><p>相当于在三数之和的基础上加了一层循环，确定第一个数字就变成了三数之和</p>
+<p>有趣的是这里的去重以及剪枝优化</p>
+<p>例如： 不要判断<code>nums[k] &gt; target</code> 就返回了，三数之和 可以通过 <code>nums[i] &gt; 0</code> 就返回了，因为 0 已经是确定的数了，四数之和这道题目 target是任意值。比如：数组是<code>[-4, -3, -2, -1]</code>，<code>target</code>是<code>-10</code>，不能因为<code>-4 &gt; -10</code>而跳过（因为如果为负数，数值越大就越小）。但是我们依旧可以去做剪枝，逻辑变成<code>nums[i] &gt; target &amp;&amp; (nums[i] &gt;=0 || target &gt;= 0)</code>就可以了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">fourSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;res;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="comment">//注意target不一定是0或者正数</span></span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; target &amp;&amp; nums[i] &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i+<span class="number">1</span>; j &lt; nums.<span class="built_in">size</span>(); j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] &gt; target &amp;&amp; nums[i] + nums[j] &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//b去重</span></span><br><span class="line">                <span class="keyword">if</span> (j &gt; i+<span class="number">1</span> &amp;&amp; nums[j] == nums[j<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">                <span class="type">int</span> left = j+<span class="number">1</span>;</span><br><span class="line">                <span class="type">int</span> right = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((<span class="type">long</span>)nums[i] + nums[j] + nums[left] + nums[right] &gt; target) right--;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> ((<span class="type">long</span>)nums[i] + nums[j] + nums[left] + nums[right] &lt; target) left++;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        res.<span class="built_in">push_back</span>(&#123;nums[i], nums[j], nums[left], nums[right]&#125;);</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[left] == nums[left+<span class="number">1</span>]) left++;</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[right] == nums[right<span class="number">-1</span>]) right--;</span><br><span class="line">                        left++;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/%E7%AE%97%E6%B3%95/">算法</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2022 John Doe
+  
+</p>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+
+<script src="/js/phasebeam.js"></script>
+
+</body>
+</html>

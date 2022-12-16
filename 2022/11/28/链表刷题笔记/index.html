@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+ <html lang="en"> 
+<head>
+  <meta charset="utf-8">
+  
+  <title>链表刷题笔记 | Hexo</title>
+  <meta name="author" content="John Doe">
+
+  
+  <meta name="description" content="1、当要删除头结点时，可以给链表增加一个虚拟的空头结点
+12ListNode *dummyHead = new Listnode(0);dummyHead-&amp;gt;next = head;
+
+2、用双指针找链表的相交结点时
+这一段代码千万别写成pA-&amp;gt;next == nullptr,因为这样会">
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="p-name title" itemprop="headline name">链表刷题笔记</h1>
+  
+
+    <time class="dt-published" datetime="2022-11-27T16:00:00.000Z">
+  <span class="day">28</span><span class="month">Nov</span>
+</time>
+  </header>
+  <div class="e-content entry-content">
+    
+      <p>1、当要删除头结点时，可以给链表增加一个虚拟的空头结点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ListNode *dummyHead = <span class="keyword">new</span> <span class="built_in">Listnode</span>(<span class="number">0</span>);</span><br><span class="line">dummyHead-&gt;next = head;</span><br></pre></td></tr></table></figure>
+
+<p>2、用双指针找链表的相交结点时</p>
+<p>这一段代码千万别写成pA-&gt;next == nullptr,因为这样会跳过当他们没有交点的时候，事实上不管两个链表是不是会相交，pA和pB都会相遇，但是当两个链表不相交时，他们同时为nullptr罢了，如果用 pA-&gt;next == nullptr来判断的话，会跳过他们同时等于 nullptr 的情况</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (pA != pB) &#123;</span><br><span class="line">            pA = pA == <span class="literal">nullptr</span>? headB : pA-&gt;next;</span><br><span class="line">            pB = pB == <span class="literal">nullptr</span>? headA : pB-&gt;next;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/%E7%AE%97%E6%B3%95/">算法</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2022 John Doe
+  
+</p>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+
+<script src="/js/phasebeam.js"></script>
+
+</body>
+</html>
