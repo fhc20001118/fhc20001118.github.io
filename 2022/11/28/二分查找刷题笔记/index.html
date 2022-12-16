@@ -6,7 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="二分查找刷题笔记, 阿川的博客">
     <meta name="description" content="1、二分查找模板模板一：
-12345678910111213141516int search(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) &amp;#123;        int left = 0;     ">
+int search(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) &amp;#123;
+        int left &amp;#x3D; 0;
+        int right &amp;#x">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -413,7 +415,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    322
+                    374
                 </div>
                 
 
@@ -435,16 +437,49 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/project/libs/prism/prism.min.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="1、二分查找模板"><a href="#1、二分查找模板" class="headerlink" title="1、二分查找模板"></a>1、二分查找模板</h2><p>模板一：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>; <span class="comment">// 定义target在左闭右闭的区间里，[left, right]</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123; <span class="comment">// 当left==right，区间[left, right]依然有效，所以用 &lt;=</span></span><br><span class="line">            <span class="type">int</span> middle = left + ((right - left) / <span class="number">2</span>);<span class="comment">// 防止溢出 等同于(left + right)/2</span></span><br><span class="line">            <span class="keyword">if</span> (nums[middle] &gt; target) &#123;</span><br><span class="line">                right = middle - <span class="number">1</span>; <span class="comment">// target 在左区间，所以[left, middle - 1]</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[middle] &lt; target) &#123;</span><br><span class="line">                left = middle + <span class="number">1</span>; <span class="comment">// target 在右区间，所以[middle + 1, right]</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// nums[middle] == target</span></span><br><span class="line">                <span class="keyword">return</span> middle; <span class="comment">// 数组中找到目标值，直接返回下标</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 未找到目标值</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int search(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int left &#x3D; 0;
+        int right &#x3D; nums.size() - 1; &#x2F;&#x2F; 定义target在左闭右闭的区间里，[left, right]
+        while (left &lt;&#x3D; right) &#123; &#x2F;&#x2F; 当left&#x3D;&#x3D;right，区间[left, right]依然有效，所以用 &lt;&#x3D;
+            int middle &#x3D; left + ((right - left) &#x2F; 2);&#x2F;&#x2F; 防止溢出 等同于(left + right)&#x2F;2
+            if (nums[middle] &gt; target) &#123;
+                right &#x3D; middle - 1; &#x2F;&#x2F; target 在左区间，所以[left, middle - 1]
+            &#125; else if (nums[middle] &lt; target) &#123;
+                left &#x3D; middle + 1; &#x2F;&#x2F; target 在右区间，所以[middle + 1, right]
+            &#125; else &#123; &#x2F;&#x2F; nums[middle] &#x3D;&#x3D; target
+                return middle; &#x2F;&#x2F; 数组中找到目标值，直接返回下标
+            &#125;
+        &#125;
+        &#x2F;&#x2F; 未找到目标值
+        return -1;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>模板二：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right = nums.<span class="built_in">size</span>(); <span class="comment">// 定义target在左闭右开的区间里，即：[left, right)</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123; <span class="comment">// 因为left == right的时候，在[left, right)是无效的空间，所以使用 &lt;</span></span><br><span class="line">            <span class="type">int</span> middle = left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (nums[middle] &gt; target) &#123;</span><br><span class="line">                right = middle; <span class="comment">// target 在左区间，在[left, middle)中</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[middle] &lt; target) &#123;</span><br><span class="line">                left = middle + <span class="number">1</span>; <span class="comment">// target 在右区间，在[middle + 1, right)中</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// nums[middle] == target</span></span><br><span class="line">                <span class="keyword">return</span> middle; <span class="comment">// 数组中找到目标值，直接返回下标</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 未找到目标值</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int search(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int left &#x3D; 0;
+        int right &#x3D; nums.size(); &#x2F;&#x2F; 定义target在左闭右开的区间里，即：[left, right)
+        while (left &lt; right) &#123; &#x2F;&#x2F; 因为left &#x3D;&#x3D; right的时候，在[left, right)是无效的空间，所以使用 &lt;
+            int middle &#x3D; left + ((right - left) &gt;&gt; 1);
+            if (nums[middle] &gt; target) &#123;
+                right &#x3D; middle; &#x2F;&#x2F; target 在左区间，在[left, middle)中
+            &#125; else if (nums[middle] &lt; target) &#123;
+                left &#x3D; middle + 1; &#x2F;&#x2F; target 在右区间，在[middle + 1, right)中
+            &#125; else &#123; &#x2F;&#x2F; nums[middle] &#x3D;&#x3D; target
+                return middle; &#x2F;&#x2F; 数组中找到目标值，直接返回下标
+            &#125;
+        &#125;
+        &#x2F;&#x2F; 未找到目标值
+        return -1;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h6 id="解释一下左移和右移：x-lt-lt-y-相当于x-2-y-，x-gt-gt-y-相当于x-2-y"><a href="#解释一下左移和右移：x-lt-lt-y-相当于x-2-y-，x-gt-gt-y-相当于x-2-y" class="headerlink" title="解释一下左移和右移：x &lt;&lt; y 相当于x * 2^y ，x &gt;&gt; y 相当于x  /  2^y"></a>解释一下左移和右移：x &lt;&lt; y 相当于x * 2^y ，x &gt;&gt; y 相当于x  /  2^y</h6>
                 
@@ -590,60 +625,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/project/2022/11/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/project/medias/featureimages/0.jpg" class="responsive-img" alt="二分查找刷题笔记">
-                        
-                        <span class="card-title">二分查找刷题笔记</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/project/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/project/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-                        <span class="chip bg-color">二分查找</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/project/2022/11/28/c++%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
                     <div class="card-image">
@@ -661,6 +645,55 @@
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/project/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/project/tags/%E5%9B%9E%E6%BA%AF/">
+                        <span class="chip bg-color">回溯</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/project/2022/11/28/%E5%8F%8C%E6%8C%87%E9%92%88%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/project/medias/featureimages/2.jpg" class="responsive-img" alt="双指针刷题笔记">
+                        
+                        <span class="card-title">双指针刷题笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
                             </span>
@@ -679,8 +712,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/project/tags/%E5%9B%9E%E6%BA%AF/">
-                        <span class="chip bg-color">回溯</span>
+                    <a href="/project/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                        <span class="chip bg-color">双指针</span>
                     </a>
                     
                 </div>
@@ -735,6 +768,9 @@
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/project/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/project/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->
