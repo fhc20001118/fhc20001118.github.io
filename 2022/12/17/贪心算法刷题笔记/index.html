@@ -413,14 +413,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    616
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -470,8 +470,35 @@
         &#125;
         return res;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>preDiff是可以等于0的，而curDiff是不能等于0的</p>
-<p>i要小于nuts.size()-1，不要越界了</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ol>
+<li><p>curDiff &gt; 0 &amp;&amp; preDiff &lt;= 0，为什么cur不能等于0？</p>
+<p>因为pre初值为0，当只有两个数时，如果他们不相等，那一定是有坡度的，也就是说cur一定是大于0或者小于0，此时满足条件res++；两个数相等的话，cur等于0，此时他们没有坡度，res不能增加，只能返回1，因此不能curDiff &gt;= 0或者curDiff &lt;= 0,这样会导致有两个相等的数时也会增加序列长度。</p>
+</li>
+<li><p>i要小于nuts.size()-1，不要越界了。</p>
+</li>
+</ol>
+<h2 id="2、最大子序和"><a href="#2、最大子序和" class="headerlink" title="2、最大子序和"></a>2、最大子序和</h2><p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>示例: 输入: [-2,1,-3,4,-1,2,1,-5,4] 输出: 6 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
+<h3 id="贪心解法"><a href="#贪心解法" class="headerlink" title="贪心解法"></a>贪心解法</h3><p><strong>贪心贪的是哪里呢？</strong></p>
+<p>如果 -2 1 在一起，计算起点的时候，一定是从1开始计算，因为负数只会拉低总和，这就是贪心贪的地方！</p>
+<p>局部最优：当前“连续和”为负数的时候立刻放弃，从下一个元素重新计算“连续和”，因为负数加上下一个元素 “连续和”只会越来越小。</p>
+<p>全局最优：选取最大“连续和”</p>
+<p><strong>局部最优的情况下，并记录最大的“连续和”，可以推出全局最优</strong>。</p>
+<p>从代码角度上来讲：遍历nums，从头开始用count累积，如果count一旦加上nums[i]变为负数，那么就应该从nums[i+1]开始从0累积count了，因为已经变为负数的count，只会拖累总和。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int maxSubArray(vector&lt;int&gt;&amp; nums) &#123;
+        int result &#x3D; INT_MIN;
+        int count &#x3D; 0;
+        for (int i &#x3D; 0; i &lt; nums.size(); i++) &#123;
+            count +&#x3D; nums[i];
+            if (count &gt; result) &#123; &#x2F;&#x2F; 取区间累计的最大值（相当于不断确定最大子序终止位置）
+                result &#x3D; count;
+            &#125;
+            if (count &lt;&#x3D; 0) count &#x3D; 0; &#x2F;&#x2F; 相当于重置最大子序起始位置，因为遇到负数一定是拉低总和
+        &#125;
+        return result;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://code-thinking.cdn.bcebos.com/gifs/53.%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C.gif" alt="53.最大子序和"></p>
 
                 
             </div>
