@@ -4,13 +4,25 @@
   
     
     <entry>
-      <title></title>
+      <title>vscode</title>
       <link href="/project/2023/04/13/mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8tips/"/>
       <url>/project/2023/04/13/mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8tips/</url>
       
         <content type="html"><![CDATA[<h1 id="使用vscode免密远程连接服务器"><a href="#使用vscode免密远程连接服务器" class="headerlink" title="使用vscode免密远程连接服务器"></a>使用vscode免密远程连接服务器</h1><ol><li><p>本地主机终端</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ssh-keygen&#x2F;&#x2F;会生成一个.ssh文件夹，打开文件夹中的公钥并复制（后缀为pub）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>服务器终端</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ssh-keygen&#x2F;&#x2F;在生成的.ssh文件夹下创建一个文件vim authorized_keys&#x2F;&#x2F;把复制的公钥放入其中就可以，退出并保存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>​</p></li></ol>]]></content>
       
       
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vscode </tag>
+            
+        </tags>
       
     </entry>
     

@@ -6,7 +6,7 @@
   <link href="http://fhc20001118.github.io/project/atom.xml" rel="self"/>
   
   <link href="http://fhc20001118.github.io/project/"/>
-  <updated>2023-04-13T14:58:25.481Z</updated>
+  <updated>2023-04-13T15:56:31.689Z</updated>
   <id>http://fhc20001118.github.io/project/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>vscode</title>
     <link href="http://fhc20001118.github.io/project/2023/04/13/mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8tips/"/>
     <id>http://fhc20001118.github.io/project/2023/04/13/mac%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8tips/</id>
-    <published>2023-04-13T14:58:25.481Z</published>
-    <updated>2023-04-13T14:58:25.481Z</updated>
+    <published>2023-04-12T16:00:00.000Z</published>
+    <updated>2023-04-13T15:56:31.689Z</updated>
     
     <content type="html"><![CDATA[<h1 id="使用vscode免密远程连接服务器"><a href="#使用vscode免密远程连接服务器" class="headerlink" title="使用vscode免密远程连接服务器"></a>使用vscode免密远程连接服务器</h1><ol><li><p>本地主机终端</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ssh-keygen&#x2F;&#x2F;会生成一个.ssh文件夹，打开文件夹中的公钥并复制（后缀为pub）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>服务器终端</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ssh-keygen&#x2F;&#x2F;在生成的.ssh文件夹下创建一个文件vim authorized_keys&#x2F;&#x2F;把复制的公钥放入其中就可以，退出并保存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>​</p></li></ol>]]></content>
     
@@ -34,6 +34,10 @@
     
     
     
+    <category term="学习笔记" scheme="http://fhc20001118.github.io/project/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="vscode" scheme="http://fhc20001118.github.io/project/tags/vscode/"/>
     
   </entry>
   
@@ -42,7 +46,7 @@
     <link href="http://fhc20001118.github.io/project/2023/01/10/STL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/"/>
     <id>http://fhc20001118.github.io/project/2023/01/10/STL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/</id>
     <published>2023-01-09T16:00:00.000Z</published>
-    <updated>2023-01-12T15:55:15.241Z</updated>
+    <updated>2023-04-13T15:45:56.342Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、空间配置器"><a href="#一、空间配置器" class="headerlink" title="一、空间配置器"></a>一、空间配置器</h1><h2 id="1-1-设计一个简单的空间配置器-JJ：allocator"><a href="#1-1-设计一个简单的空间配置器-JJ：allocator" class="headerlink" title="1.1 设计一个简单的空间配置器 JJ：allocator"></a>1.1 设计一个简单的空间配置器 JJ：allocator</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#ifndef _JJALLOC_#define _JJALLOC_#include &lt;new&gt; &#x2F;&#x2F; for palecement new#include &lt;cstddef&gt; &#x2F;&#x2F; for ptrdiff_t, size_t#include &lt;cstdlib&gt; &#x2F;&#x2F; for exit()#include &lt;climits&gt; &#x2F;&#x2F; for UINT_MAX#include &lt;iostream&gt; &#x2F;&#x2F; for cerrusing namespace std;namespace JJ &#123;    template &lt;class T&gt;    inline T* _allocate(ptrdiff_t size, T*) &#123;        set_new_handler(0);        T* tmp &#x3D; (T*)(::operator new ((size_t)(size* sizeof(T))));        if (tmp &#x3D;&#x3D; 0) &#123;            cerr &lt;&lt; &quot;out of memory&quot; &lt;&lt; endl;            exit(1);        &#125;        return tmp;    &#125;    template &lt;class T&gt;    inline void _deallocate(T* buffer) &#123;        ::operator delete(buffer);    &#125;    template &lt;class T1, class T2&gt;    inline void _construct(T1* p, const T2&amp; value) &#123;        new(p) T1(value);   &#x2F;&#x2F;placement new. invoke ctor of T1    &#125;    template &lt;class T&gt;    inline void _destroy(T* ptr) &#123;        ptr-&gt;~T();    &#125;    template &lt;class T&gt;    class allocator &#123;    public:        typedef T value_type;        typedef T* pointer;        typedef const T* const_pointer;        typedef T&amp; reference;        typedef const T&amp; const_reference;        typedef size_t size_type;        typedef ptrdiff_t difference_type;        &#x2F;&#x2F;rebind allocator of type U        template &lt;class U&gt;        struct rebind &#123;            typedef allocator&lt;U&gt; other;        &#125;;        &#x2F;&#x2F;hint used for locality        pointer allocate(size_type n, const void* hint&#x3D;0) &#123;            return JJ::_allocate((difference_type)n, (pointer)0);        &#125;        void deallocate(pointer p, size_type n) &#123; _deallocate(p);&#125;        void construct(pointer p, const T&amp; value) &#123;            _construct(p, value);        &#125;        void destroy(pointer p) &#123; _destroy(p);&#125;        pointer address(reference x) &#123; return (pointer)&amp;x; &#125;        const_pointer const_address(const_reference x) &#123;            return (const_pointer)&amp;x;        &#125;        size_type max_size() const &#123;            return size_type(UINT_MAX&#x2F;sizeof(T));        &#125;    &#125;;&#125;#endif &#x2F;&#x2F;_JJALLOC_<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>​    我们知道STL容器在不断保存数据时，当保存的的数据个数超过容器容量时，需要进行扩容。但是，当不断保存数据时，就可能需要不断的进行扩容。此时，扩容需要不断的向操作系统申请空间，释放空间。操作系统是很繁忙的，这样会大大影响操作系统的效率。</p><p><strong>空间配置器：是操作系统开辟的一大段内存空间。</strong>STL需要扩容申请内存时，就从空间配置器中申请，不需要再经过操作系统。并且，它还能回收释放的空间，供下一次使用。</p><p>优点：</p><ul><li>提高效率；STL容器申请空间不需要频繁向操作系统申请，而是需要向空间适配器申请，只是当空间适配器空间不够时，才会向操作系统申请。空间适配器还可以回收STL容器释放的空间，供下一次使用。</li><li>避免内存碎片；</li><li>更好地管理内存；</li></ul><h2 id="1-2-空间配置器基本原理"><a href="#1-2-空间配置器基本原理" class="headerlink" title="1.2 空间配置器基本原理"></a>1.2 空间配置器基本原理</h2><p>​    <strong>空间配置器有两级结构，一级空间配置器是用来处理大块内存，二级空间配置器处理小块内存。SGI-STL规定以128字节作为小块内存和大块内存的分界线。</strong></p><p><strong>为什么这样区分成两级？</strong></p><p><strong>因为STL容器，一般申请的都会是小块的内存。</strong></p><p><strong>二级空间配置器，主要是管理容器申请空间和释放的空间。</strong></p><p><strong>如果用户申请的空间直接大于的128字节直接找的是一级空间配置器申请空间。</strong></p><h2 id="二、序列式容器"><a href="#二、序列式容器" class="headerlink" title="二、序列式容器"></a>二、序列式容器</h2><h3 id="2-1-序列式容器"><a href="#2-1-序列式容器" class="headerlink" title="2.1 序列式容器"></a>2.1 序列式容器</h3><p>​    所谓序列式容器，其中的元素都可序，但未必有序。c++本身提供了一个序列式容器array，STL再另外提供vector，list，deque，stack，queue，priority-queue等序列式容器。</p><h3 id="2-2-vector"><a href="#2-2-vector" class="headerlink" title="2.2 vector"></a>2.2 vector</h3><h4 id="2-2-1-vector概述"><a href="#2-2-1-vector概述" class="headerlink" title="2.2.1 vector概述"></a>2.2.1 vector概述</h4><p>​    vector的数据安排以及操作方式，与array非常相似，两者差别在于空间运用的灵活性。array是静态空间，一旦配置就不能改变。vector是动态空间，随着元素的加入，它的内部机制会自行扩充空间容纳新的元素。</p>]]></content>
     
